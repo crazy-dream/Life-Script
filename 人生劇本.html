@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>人生劇本</title>
+<style>
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .quiz-container {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+  }
+  h1 {
+    font-size: 2em;
+    margin-bottom: 15px;
+  }
+  p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 25px;
+  }
+  .step {
+    margin-bottom: 20px;
+  }
+  .hidden {
+    display: none;
+  }
+  .option-btn {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #6C63FF;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s;
+  }
+  .option-btn:hover {
+    background: #6C63FF;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+  #finalResult {
+    font-weight: bold;
+    color: #d62828;
+    font-size: 8vw;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .start-btn {
+    background: linear-gradient(90deg, #6C63FF, #9A8CFF);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .start-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  }
+  .dots-container {
+    display: inline-block;
+    width: 3ch; /* 固定寬度，避免文字跳動 */
+    text-align: left;
+  }
+</style>
+</head>
+<body>
+<div class="quiz-container">
+
+  <!-- 封面頁 -->
+  <div class="step" id="coverStep">
+    <h1>開始你的人生劇本</h1>
+    <p>這是一個簡單又有趣的人生劇本測驗，透過幾個小問題，我將揭曉你的人生走向…</p>
+    <button class="start-btn" onclick="nextStepFromCover()">開始測驗</button>
+  </div>
+
+  <!-- Step 1 -->
+  <div class="step hidden" id="step1">
+    <p>選擇你的性別：</p>
+    <button class="option-btn" onclick="chooseAnswer(1,'男')">男</button>
+    <button class="option-btn" onclick="chooseAnswer(1,'女')">女</button>
+    <button class="option-btn" onclick="chooseAnswer(1,'其他')">其他</button>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="step hidden" id="step2">
+    <p>選擇你的年齡：</p>
+    <button class="option-btn" onclick="chooseAnswer(2,'20 歲以下')">20 歲以下</button>
+    <button class="option-btn" onclick="chooseAnswer(2,'20–29 歲')">20–29 歲</button>
+    <button class="option-btn" onclick="chooseAnswer(2,'30–39 歲')">30–39 歲</button>
+    <button class="option-btn" onclick="chooseAnswer(2,'40–49 歲')">40–49 歲</button>
+    <button class="option-btn" onclick="chooseAnswer(2,'50 歲以上')">50 歲以上</button>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="step hidden" id="step3">
+    <p>你覺得自己是早起鳥還是夜貓子？</p>
+    <button class="option-btn" onclick="chooseAnswer(3,'早起鳥')">早起鳥</button>
+    <button class="option-btn" onclick="chooseAnswer(3,'夜貓子')">夜貓子</button>
+    <button class="option-btn" onclick="chooseAnswer(3,'其他')">其他</button>
+  </div>
+
+  <!-- Step 4 -->
+  <div class="step hidden" id="step4">
+    <p>面對壓力時，你通常會怎麼做？</p>
+    <button class="option-btn" onclick="chooseAnswer(4,'正面硬剛')">正面硬剛</button>
+    <button class="option-btn" onclick="chooseAnswer(4,'選擇逃避')">選擇逃避</button>
+    <button class="option-btn" onclick="chooseAnswer(4,'開玩笑轉移注意')">開玩笑轉移注意</button>
+    <button class="option-btn" onclick="chooseAnswer(4,'睡一覺再說')">睡一覺再說</button>
+    <button class="option-btn" onclick="chooseAnswer(4,'其他')">其他</button>
+  </div>
+
+  <!-- Step 5 -->
+  <div class="step hidden" id="step5">
+    <p>在群體裡，你通常扮演什麼角色？</p>
+    <button class="option-btn" onclick="chooseAnswer(5,'領導者')">領導者</button>
+    <button class="option-btn" onclick="chooseAnswer(5,'安靜的支持者')">安靜的支持者</button>
+    <button class="option-btn" onclick="chooseAnswer(5,'帶氣氛的搞笑擔當')">帶氣氛的搞笑擔當</button>
+    <button class="option-btn" onclick="chooseAnswer(5,'存在感低到像鬼')">存在感低到像鬼</button>
+    <button class="option-btn" onclick="chooseAnswer(5,'其他')">其他</button>
+  </div>
+
+  <!-- Step 6 -->
+  <div class="step hidden" id="step6">
+    <p>假設你中了樂透，你會做什麼？</p>
+    <button class="option-btn" onclick="chooseAnswer(6,'出國旅遊')">出國旅遊</button>
+    <button class="option-btn" onclick="chooseAnswer(6,'買房買車')">買房買車</button>
+    <button class="option-btn" onclick="chooseAnswer(6,'辭職爽過人生')">辭職爽過人生</button>
+    <button class="option-btn" onclick="chooseAnswer(6,'存起來慢慢用')">存起來慢慢用</button>
+    <button class="option-btn" onclick="chooseAnswer(6,'其他')">其他</button>
+  </div>
+
+  <!-- Step 7 -->
+  <div class="step hidden" id="step7">
+    <p>如果你的人生是一部電影，它會是什麼類型？</p>
+    <button class="option-btn" onclick="chooseAnswer(7,'動作片')">動作片</button>
+    <button class="option-btn" onclick="chooseAnswer(7,'喜劇片')">喜劇片</button>
+    <button class="option-btn" onclick="chooseAnswer(7,'劇情片')">劇情片</button>
+    <button class="option-btn" onclick="chooseAnswer(7,'恐怖片')">恐怖片</button>
+    <button class="option-btn" onclick="chooseAnswer(7,'愛情片')">愛情片</button>
+    <button class="option-btn" onclick="chooseAnswer(7,'其他')">其他</button>
+  </div>
+
+  <!-- Step 8 -->
+  <div class="step hidden" id="step8">
+    <h3>正在計算你的人生劇本，請稍等<span class="dots-container" id="dots"></span></h3>
+    <div class="result hidden" id="finalResult">關我屁事</div>
+  </div>
+
+</div>
+
+<script>
+  function nextStepFromCover() {
+    document.getElementById("coverStep").classList.add("hidden");
+    document.getElementById("step1").classList.remove("hidden");
+  }
+
+  function chooseAnswer(step, answer) {
+    console.log("Step " + step + " 選擇: " + answer);
+    nextStep(step + 1);
+  }
+
+  function nextStep(step) {
+    const current = document.querySelector(".step:not(.hidden)");
+    current.classList.add("hidden");
+    document.getElementById("step" + step).classList.remove("hidden");
+
+    if(step === 8){
+      startDotsAnimation();
+      setTimeout(() => {
+        stopDotsAnimation();
+        document.querySelector("#step8 h3").style.display = "none";
+        const final = document.getElementById("finalResult");
+        final.classList.remove("hidden");
+      }, 5000);
+    }
+  }
+
+  let dotInterval;
+  function startDotsAnimation() {
+    const dots = document.getElementById("dots");
+    let count = 0;
+    dotInterval = setInterval(() => {
+      count = (count + 1) % 4;
+      dots.textContent = '.'.repeat(count);
+    }, 500);
+  }
+
+  function stopDotsAnimation() {
+    clearInterval(dotInterval);
+    document.getElementById("dots").textContent = '';
+  }
+</script>
+</body>
+</html>
