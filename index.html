@@ -155,6 +155,7 @@
     <p>如果你的人生是一部電影，它會是什麼類型？</p>
     <button class="option-btn" onclick="chooseAnswer(7,'動作片')">動作片</button>
     <button class="option-btn" onclick="chooseAnswer(7,'喜劇片')">喜劇片</button>
+    <button class="option-btn" onclick="chooseAnswer(7,'悲劇片')">悲劇片</button>
     <button class="option-btn" onclick="chooseAnswer(7,'劇情片')">劇情片</button>
     <button class="option-btn" onclick="chooseAnswer(7,'恐怖片')">恐怖片</button>
     <button class="option-btn" onclick="chooseAnswer(7,'愛情片')">愛情片</button>
@@ -163,6 +164,57 @@
 
   <!-- Step 8 -->
   <div class="step hidden" id="step8">
+    <p>你覺得自己更偏向哪種性格？</p>
+    <button class="option-btn" onclick="chooseAnswer(8,'外向')">外向</button>
+    <button class="option-btn" onclick="chooseAnswer(8,'內向')">內向</button>
+    <button class="option-btn" onclick="chooseAnswer(8,'看情況變化')">看情況變化</button>
+    <button class="option-btn" onclick="chooseAnswer(8,'其他')">其他</button>
+  </div>
+
+  <!-- Step 9 -->
+  <div class="step hidden" id="step9">
+    <p>遇到困難時，你最常依靠的是？</p>
+    <button class="option-btn" onclick="chooseAnswer(9,'自己解決')">自己解決</button>
+    <button class="option-btn" onclick="chooseAnswer(9,'朋友幫忙')">朋友幫忙</button>
+    <button class="option-btn" onclick="chooseAnswer(9,'家人支持')">家人支持</button>
+    <button class="option-btn" onclick="chooseAnswer(9,'網路大神')">網路大神</button>
+    <button class="option-btn" onclick="chooseAnswer(9,'其他')">其他</button>
+  </div>
+
+  <!-- Step 10 -->
+  <div class="step hidden" id="step10">
+    <p>如果只能選一種生活方式，你會選？</p>
+    <button class="option-btn" onclick="chooseAnswer(10,'都市快節奏')">都市快節奏</button>
+    <button class="option-btn" onclick="chooseAnswer(10,'鄉村慢生活')">鄉村慢生活</button>
+    <button class="option-btn" onclick="chooseAnswer(10,'四處流浪探險')">四處流浪探險</button>
+    <button class="option-btn" onclick="chooseAnswer(10,'安靜的宅生活')">安靜的宅生活</button>
+    <button class="option-btn" onclick="chooseAnswer(10,'其他')">其他</button>
+  </div>
+
+  <!-- Step 11 -->
+  <div class="step hidden" id="step11">
+    <p>如果要形容你的人生，你會用哪一個比喻？</p>
+    <button class="option-btn" onclick="chooseAnswer(11,'過山車')">過山車</button>
+    <button class="option-btn" onclick="chooseAnswer(11,'平靜湖泊')">平靜湖泊</button>
+    <button class="option-btn" onclick="chooseAnswer(11,'迷宮')">迷宮</button>
+    <button class="option-btn" onclick="chooseAnswer(11,'煙火')">煙火</button>
+    <button class="option-btn" onclick="chooseAnswer(11,'一灘死水')">一灘死水</button>
+    <button class="option-btn" onclick="chooseAnswer(11,'其他')">其他</button>
+  </div>
+
+  <!-- Step 12 -->
+  <div class="step hidden" id="step12">
+    <p>你對未來的態度是？</p>
+    <button class="option-btn" onclick="chooseAnswer(12,'充滿期待')">充滿期待</button>
+    <button class="option-btn" onclick="chooseAnswer(12,'隨遇而安')">隨遇而安</button>
+    <button class="option-btn" onclick="chooseAnswer(12,'有點焦慮')">有點焦慮</button>
+    <button class="option-btn" onclick="chooseAnswer(12,'完全絕望')">完全絕望</button>
+    <button class="option-btn" onclick="chooseAnswer(12,'根本不想去想')">根本不想去想</button>
+    <button class="option-btn" onclick="chooseAnswer(12,'其他')">其他</button>
+  </div>
+
+  <!-- Step 13 (計算 & 最後結果) -->
+  <div class="step hidden" id="step13">
     <h3>正在計算你的人生劇本，請稍等<span class="dots-container" id="dots"></span></h3>
     <div class="result hidden" id="finalResult">關我屁事</div>
   </div>
@@ -185,11 +237,11 @@
     current.classList.add("hidden");
     document.getElementById("step" + step).classList.remove("hidden");
 
-    if(step === 8){
+    if(step === 13){
       startDotsAnimation();
       setTimeout(() => {
         stopDotsAnimation();
-        document.querySelector("#step8 h3").style.display = "none";
+        document.querySelector("#step13 h3").style.display = "none";
         const final = document.getElementById("finalResult");
         final.classList.remove("hidden");
       }, 5000);
